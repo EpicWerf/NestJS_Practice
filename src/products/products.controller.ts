@@ -34,6 +34,13 @@ export class ProductsController {
     return products;
   }
 
+  @Get('/count')
+  async getCount() {
+    console.log('here');
+
+    return this.productsService.getProductCount();
+  }
+
   @Get(':id')
   getProduct(@Param('id') prodId: string) {
     return this.productsService.getSingleProduct(prodId);
@@ -59,11 +66,6 @@ export class ProductsController {
   async removeProduct(@Param('id') prodId: string) {
     await this.productsService.deleteProduct(prodId);
     return { message: 'Product deleted' };
-  }
-
-  @Get('/count')
-  async getCount() {
-    return this.productsService.getProductCount();
   }
 
   @Get('title/:title')
